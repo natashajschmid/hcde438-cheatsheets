@@ -1,139 +1,117 @@
-# css
+# CSS
 
 ### selectors
 
-**elements**
-```css
-img {
-    /* all these styles apply to every <img> */
-}
-```
-**classes**
-`.class-name{}`
-**id**
-`#my-element{}`
+Are for applying specific styles to an HTML element. Mostly, its best to use classes in CSS. 
 
-**rules**
 ```css
-.my-wrapper .my-class{
-    /* will apply only to "my-class" elements that are WITHIN "my-wrapper" */
+header{
+    /* These styles will apply to every <header> on the page */
 }
-.class-one, .class-two{
-    /* applies to both classes */
+.class{
+    /* each element like: <div class="class"></div> */
 }
-.class-one > .child {
-    /* only direct children */
-}
-.class-one.class-two {
-    /* must have BOTH of these classes */
-}
-```
-
-### pseudoselectors
-```css
-.my-class:hover{}
-.my-class:focus{}
-
-.my-class:first-child{
-    /* only the first child WITHIN my-class */
-}
-.my-class:nth-child(3){
-    /* only the 3 child in my-class */
+#id{
+    /* each element with id="id" */
 }
 ```
 
 ### units
-- `px`
-- `%`: percentage of the elements parent
-- `vw`/`vh`: percentage viewheight or viewwidth
-- `rem`: ratio of the root font-size
 
-### some basic css rules
+There are different units that can be used in CSS:
+
 ```css
 .class{
-    color: blue; /* for text color */
-    background: red; /* background color */
-    width: 5rem;
-    max-width: 100vw;
-    height: 10%;
-    max-height: 100vh;
-    margin: 20px; /* outside the element */
-    padding: 20px; /* inside */
-    font-size: 10px;
-    font-family: 'Avenir', Helvetica;
+    height: 100px; /* pixel unit */
+    height: 100%; /* percentage of the parent element */
+    height: 100vh; /* percentage of the entire window */
+    height: 1rem; /* responsive (to the font-size of html) */
 }
 ```
 
-### position
-- `relative`: They will be arranged based on their siblings.
-- `absolute`: removes the element from the "flow" of sibling elements. Instead, it becomes positioned based on its closest parents that has "relative" positioning. You can use `top`,`bottom`,`left`, and `right` to move it around precisely. 
-- Note: either "relative" or "absolute" positioning gives you the ability to use `z-index`
+### some common CSS rules:
 
-### display
+```css
+.class{
+    /* basic styles */
+    height: 1rem;
+    width: 1rem;
+    margin: 1rem; /* spacing OUTSIDE the element */
+    margin-right: 2rem; /* spacing just to the right */
+    padding: 1rem; /* spacing INSIDE the element */
+    border: 1px solid white;
+    border-radius: 100%; /* 100% will make a circle */
 
-- `block` (default)
-- `inline-block` (stack horizontally)
-- `none` (hide)
-- `flex` !!!!!!!!!!!!!!!!!
+    /* colors */
+    background: magenta;
+    background: #00FF00; /* hexadecimal */
+    background: rgb(255,255,255); /* red, green, blue */
+    background: rgba(255,255,255,0.5); /* red, green, blue, opacity */
+    background: url(https://my.image.png);
+    color: green; /* for text color */
+
+    /* text */
+    font-size: 1rem;
+    font-family: Helvetica, Arial;
+    font-weight: bold; /* bold, normal */
+    text-align: center; 
+
+    /* layouts */
+    display:flex; /* flex, block, none */
+    position:relative; /* or absolute. If "absolute" is used, then you can also use "top", "left", "bottom", "right" rules to position your element precisely */
+}
+```
+
+### hover
+
+```css
+.class{
+    background:white;
+}
+.class:hover{ /* styles change when you hover the element */
+    background:blue;
+}
+```
 
 ### flexbox
-```css
-.parent{
-    display:flex;
-    flex-direction:column; /* or row */
-    align-items:center; /* or flex-start, flex-end, space-between, space-around, space-evenly */
-    justify-content:center;
-    flex-wrap:wrap; /* allows your children to wrap */
-}
-.child{
-    flex:1; /* the ratio of how much space to take up */
-}
-```
-- `align-items` aligns opposite the direction axis
-- `justify-content`: aligns items on the direction axis
 
-### response CSS
-```css
-html { /* MOBILE */
-  font-size: 15px;
-}
-@media (min-width: 400px) {
-  html { /* TABLET */
-    font-size: 18px;
-  }
-}
-@media (min-width: 768px) {
-  html { /* DESKTOP */
-    font-size: 21px;
-  }
-}
-```
-- you can use `rem` units to scale other elements on your page in relation to that `font-size` on your `<html>` element. 
+The best way to do layouts!
 
-
-### animations
 ```css
-.my-button{
-  transition:all 0.2s; /* a "transition" on your animation */
-}
-.my-button:hover{
-  transform:scale(1.2,1.2) translate(100px, 50px);
+.class{
+    display: flex;
+    flex-direction: row; /* or column */
+    align-items: flex-start; /* or "center", "space-between", "space-around", or "flex-end" */
+    justify-content: flex-start; /* also has the same options as align-items */
+    flex-wrap: wrap;
 }
 ```
 
-Using "transform" or "opacity" for animations makes your application WAY more performant and will not slow down the page, even with thousands of animations running.
+### media queries
 
-**long-running animations**
+Here is a standard responsive design media query setup. After putting this in your CSS, you are able to use `rem` units anywhere in your site, and they will be automatically responsive.
+
 ```css
-.logo{
-  animation: spinny infinite 20s linear;
+/* mobile */
+html {
+    font-size: 14px;
 }
-@keyframes spinny {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* tablet */
+@media only screen and (min-width: 480px) {
+    html {
+        font-size: 16px;
+    }
+}
+/* desktop */
+@media only screen and (min-width: 768px) {
+    html {
+        font-size: 18px;
+    }
+}
+/* extra large */
+@media only screen and (min-width: 1024px) {
+    html {
+        font-size: 20px;
+    }
 }
 ```
