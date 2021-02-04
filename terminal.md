@@ -1,6 +1,6 @@
 # the terminal
 
-### the basic terminal commands
+### basic terminal commands
 
 - `ls`: list ocntents of current directory
 - `pwd`: print the path to your current directory
@@ -16,6 +16,7 @@
 - `npm install -g LIBRARY`: install a global library
 - `npm start`: start your app
 - `npm build`: build your app
+- `ctrl-c`: will stop your app
 
 ### git
 - `git init`: starts a git repo in your current directory
