@@ -76,7 +76,3 @@ if (5==="5") {
   // will this code run? NO!!!
 }
 ```
-
-
-
-// ... means put every single element of the msg as a prop and add isMe and a key (in App.js Message component)
